@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Data;
+using R3MaterialDesignNavigationTemplate.Extensions;
 
 namespace R3MaterialDesignNavigationTemplate.ViewModels
 {
@@ -45,9 +46,10 @@ namespace R3MaterialDesignNavigationTemplate.ViewModels
         public MainWindowViewModel()
         {
             this.DialogCoordinator = MahApps.Metro.Controls.Dialogs.DialogCoordinator.Instance;
+            var version = System.Reflection.Assembly.GetExecutingAssembly().GetVersion();
             var fv = System.Diagnostics.FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
             this.AppTitle = $"{fv.ProductName}";
-            this.AppVersion = $"ver {fv.ProductVersion}";
+            this.AppVersion = $"ver {version}";
             this.AppFullTitle = $"{AppTitle} {AppVersion}";
             this.MenuItems = new ObservableCollection<NavigationMenuItem>();
             foreach(var item in GenerateMenuItems())
@@ -97,7 +99,6 @@ namespace R3MaterialDesignNavigationTemplate.ViewModels
         private static IEnumerable<NavigationMenuItem> GenerateMenuItems()
         {
             yield return new NavigationMenuItem("Sample", typeof(SampleBox), ScrollBarVisibility.Disabled);
-            yield return new NavigationMenuItem("Color", typeof(ColorToolBox), ScrollBarVisibility.Disabled);
         }
 
         private bool MenuItemsFilter(object obj)

@@ -10,6 +10,7 @@ using R3MaterialDesignNavigationTemplate.Views;
 using System.IO;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Media.Animation;
 
 namespace R3MaterialDesignNavigationTemplate
 {
@@ -29,9 +30,7 @@ namespace R3MaterialDesignNavigationTemplate
                 services.AddSingleton<MainWindowViewModel>();
                 services.AddSingleton<SampleBox>();
                 services.AddSingleton<SampleBoxViewModel>();
-                services.AddSingleton<ColorToolBox>();
                 services.AddSingleton<ColorToolBoxViewModel>();
-                services.AddSingleton<ThemeSettings>();
                 services.AddSingleton<ThemeSettingsViewModel>();
             }).Build();
 
@@ -51,24 +50,29 @@ namespace R3MaterialDesignNavigationTemplate
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            var config = GetService<AppConfig>()!;
+            Timeline.DesiredFrameRateProperty.OverrideMetadata(
+                typeof(Timeline), 
+                new FrameworkPropertyMetadata { DefaultValue = config.FrameRate });
+
             this.InitialTheme = BaseTheme.Inherit;
             this.InitialFlowDirection = FlowDirection.LeftToRight;
             InitTheme();
             _host.Start();
         }
-
+         
         private void InitTheme()
         {
-            var conf = App.GetService<AppConfig>()!;
-            var paletteHelper = new PaletteHelper();
-            paletteHelper.SetConfig(conf.Theme);
+            //var conf = App.GetService<AppConfig>()!;
+            //var paletteHelper = new PaletteHelper();
+            //paletteHelper.SetConfig(conf.Theme);
         }
 
         private async void Application_Exit(object sender, ExitEventArgs e)
         {
-            var paletteHelper = new PaletteHelper();
+            //var paletteHelper = new PaletteHelper();
             var config = App.GetService<AppConfig>()!;
-            config.Theme = paletteHelper.GetConfig();
+            //config.Theme = paletteHelper.GetConfig();
             config.Save();
             await _host.StopAsync();
 

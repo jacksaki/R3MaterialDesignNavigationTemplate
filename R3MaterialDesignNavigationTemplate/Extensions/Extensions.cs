@@ -1,14 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
 namespace R3MaterialDesignNavigationTemplate.Extensions
 {
-    public static class ConvertExtensions
+    public static class Extensions
     {
+        public static string? GetVersion(this Assembly asm)
+        {
+            var version =  asm.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+            if (version != null)
+            {
+                int plusIndex = version.IndexOf('+');
+                if (plusIndex != -1)
+                {
+                    return version.Substring(0, plusIndex);
+                }
+            }
+
+            return version;
+        }
+
         public static string? ToHtmlColor(this Color? value)
         {
             if (value is null)

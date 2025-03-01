@@ -11,6 +11,7 @@
     xmlns:v="R3MaterialDesignNavigationTemplate.Views"
     xmlns:vm="R3MaterialDesignNavigationTemplate.ViewModels"
     xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
+    wpf:TransitionAssist.DisableTransitions="True"
     Title="{Binding AppFullTitle}"
     Width="800"
     Height="450"
