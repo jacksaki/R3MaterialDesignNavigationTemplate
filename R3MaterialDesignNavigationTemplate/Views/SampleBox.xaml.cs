@@ -1,17 +1,16 @@
 ﻿using R3MaterialDesignNavigationTemplate.ViewModels;
 using System.Windows.Controls;
 
-namespace R3MaterialDesignNavigationTemplate.Views
+namespace R3MaterialDesignNavigationTemplate.Views;
+
+/// <summary>
+/// SampleBox.xaml の相互作用ロジック
+/// </summary>
+public partial class SampleBox : UserControl
 {
-    /// <summary>
-    /// SampleBox.xaml の相互作用ロジック
-    /// </summary>
-    public partial class SampleBox : UserControl
+    public SampleBox()
     {
-        public SampleBox()
-        {
-            InitializeComponent();
-            this.DataContext = App.GetService<SampleBoxViewModel>();
-        }
+        InitializeComponent();
+        this.DataContext = App.GetService<SampleBoxViewModel>();
     }
 }

@@ -4,6 +4,7 @@ using MaterialDesignColors;
 using MaterialDesignColors.ColorManipulation;
 using R3MaterialDesignNavigationTemplate.Services;
 using R3MaterialDesignNavigationTemplate.Models;
+
 namespace MaterialDesignThemes.Wpf;
 
 public static class PaletteHelperExtensions

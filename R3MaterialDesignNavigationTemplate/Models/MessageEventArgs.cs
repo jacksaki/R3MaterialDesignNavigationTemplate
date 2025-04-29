@@ -1,8 +1,7 @@
-﻿namespace R3MaterialDesignNavigationTemplate.Models
+﻿namespace R3MaterialDesignNavigationTemplate.Models;
+
+public class MessageEventArgs(string title, string message) : EventArgs
 {
-    public class MessageEventArgs(string title, string message) : EventArgs
-    {
-        public string Title => title;
-        public string Message => message;
-    }
+    public string Title => title;
+    public string Message => message;
 }
